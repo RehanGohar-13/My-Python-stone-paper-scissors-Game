@@ -36,11 +36,9 @@ python main.py
 
 ## 📷 Example Gameplay
 
-```
 Enter a choice (rock, paper, scissors): rock
 Computer chose: scissors
 Rock smashes scissors! You win!
-```
 
 ---
 
