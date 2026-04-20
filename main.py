@@ -1,3 +1,5 @@
+import random
+
 def get_choices():
     options = ["rock", "paper", "scissors"]
 
