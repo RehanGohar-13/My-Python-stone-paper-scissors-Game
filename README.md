@@ -11,26 +11,22 @@ This project was created as part of my learning journey in Python.
 2. Download or clone this repository
 3. Run the file:
 
-```bash
-python main.py
-```
-
 ---
 
 ## 🧠 Features
 
-* Play against the computer
-* Randomized computer choices
-* Input validation (prevents invalid entries)
-* Clear win/lose/tie messages
+- Play against the computer
+- Randomized computer choices
+- Input validation (prevents invalid entries)
+- Clear win/lose/tie messages
 
 ---
 
 ## 🎯 Game Rules
 
-* Rock beats Scissors
-* Scissors beats Paper
-* Paper beats Rock
+- Rock beats Scissors
+- Scissors beats Paper
+- Paper beats Rock
 
 ---
 
@@ -46,18 +42,18 @@ Rock smashes scissors! You win!
 
 ## 📚 What I Learned
 
-* Python basics (functions, variables)
-* Conditional logic (if/elif/else)
-* Using the random module
-* Handling user input
+- Python basics (functions, variables)
+- Conditional logic (if/elif/else)
+- Using the random module
+- Handling user input
 
 ---
 
 ## 🔧 Future Improvements
 
-* Add score tracking
-* Allow multiple rounds
-* Add a GUI version
+- Add score tracking
+- Allow multiple rounds
+- Add a GUI version
 
 ---
 
