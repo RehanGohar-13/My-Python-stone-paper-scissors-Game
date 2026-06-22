@@ -244,39 +244,6 @@ class RPSGame(ctk.CTk):
         )
         self.round_label.pack(pady=5)
 
-        # ── Game Over Frame (Hidden initially) ────────
-        self.gameover_frame = ctk.CTkFrame(
-            self, fg_color=BG_BLACK
-        )
-
-        self.gameover_label = ctk.CTkLabel(
-            self.gameover_frame,
-            text="",
-            font=("Arial", 28, "bold"),
-            text_color=GREEN
-        )
-        self.gameover_label.pack(pady=(10, 5))
-
-        self.gameover_subtitle = ctk.CTkLabel(
-            self.gameover_frame,
-            text="",
-            font=("Arial", 14),
-            text_color=LIGHT_GREY
-        )
-        self.gameover_subtitle.pack(pady=(0, 15))
-
-        ctk.CTkButton(
-            self.gameover_frame,
-            text="PLAY AGAIN",
-            fg_color=DARK_RED,
-            hover_color=MAROON,
-            width=200,
-            height=50,
-            corner_radius=25,
-            font=("Arial", 16, "bold"),
-            command=self.reset_game
-        ).pack(pady=10)
-
     # =============================================================
     # GAME PLAY
     # =============================================================
@@ -360,6 +327,7 @@ class RPSGame(ctk.CTk):
     # =============================================================
     # GAME OVER
     # =============================================================
+
     def show_game_over(self, title, subtitle, color):
         self.game_over = True
 
@@ -367,21 +335,36 @@ class RPSGame(ctk.CTk):
         for btn in self.game_buttons:
             btn.configure(state="disabled")
 
-        # Show game over message
-        self.gameover_label.configure(
+        # Hide the result label to make room
+        self.result_label.pack_forget()
+        self.round_label.pack_forget()
+
+        # Update result label with game over message
+        self.result_label.configure(
             text=title,
             text_color=color
         )
-        self.gameover_subtitle.configure(
-            text=subtitle
-        )
-        self.gameover_frame.pack(pady=10)
+        self.result_label.pack(pady=5)
 
         # Update subtitle
         self.subtitle.configure(
-            text="Game Over!",
+            text=subtitle,
             text_color=color
         )
+
+        # Show PLAY AGAIN button
+        self.reset_btn = ctk.CTkButton(
+            self,
+            text="PLAY AGAIN",
+            fg_color=DARK_RED,
+            hover_color=MAROON,
+            width=200,
+            height=50,
+            corner_radius=25,
+            font=("Arial", 16, "bold"),
+            command=self.reset_game
+        )
+        self.reset_btn.pack(pady=15)
 
     # =============================================================
     # RESET GAME
@@ -393,6 +376,10 @@ class RPSGame(ctk.CTk):
         self.round_num      = 0
         self.game_over      = False
 
+        # Remove play again button
+        if hasattr(self, 'reset_btn'):
+            self.reset_btn.destroy()
+
         # Reset displays
         self.player_label.configure(text="?")
         self.computer_label.configure(text="?")
@@ -400,10 +387,12 @@ class RPSGame(ctk.CTk):
             text="Make your move!",
             text_color=LIGHT_GREY
         )
+        self.result_label.pack(pady=10)
         self.p_score_label.configure(text="0")
         self.c_score_label.configure(text="0")
         self.t_score_label.configure(text="0")
         self.round_label.configure(text="Round: 0")
+        self.round_label.pack(pady=5)
         self.subtitle.configure(
             text="First to 3 wins!",
             text_color=SOFT_RED
@@ -412,9 +401,6 @@ class RPSGame(ctk.CTk):
         # Enable buttons
         for btn in self.game_buttons:
             btn.configure(state="normal")
-
-        # Hide game over frame
-        self.gameover_frame.pack_forget()
 
 # =================================================================
 # RUN GAME
